@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="main.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl1">
+                <af:panelCollection id="pc1">
+                    <f:facet name="menus"/>
+                    <f:facet name="toolbar"/>
+                    <f:facet name="statusbar"/>
+                    <af:table value="#{bindings.DemoProcessView1.collectionModel}" var="row"
+                              rows="#{bindings.DemoProcessView1.rangeSize}"
+                              emptyText="#{bindings.DemoProcessView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.DemoProcessView1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.DemoProcessView1.collectionModel.makeCurrent}"
+                              rowSelection="single" fetchSize="#{bindings.DemoProcessView1.rangeSize}" id="t1"
+                              partialTriggers=":::b1 :::b3 :::b2">
+                        <af:column headerText="Process ID" id="c1">
+                            <af:outputText value="#{row.Pid}" shortDesc="#{bindings.DemoProcessView1.hints.Pid.tooltip}"
+                                           id="ot1">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.DemoProcessView1.hints.Pid.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column headerText="Process Name" id="c2">
+                            <af:outputText value="#{row.Column1}"
+                                           shortDesc="#{bindings.DemoProcessView1.hints.Column1.tooltip}" id="ot2"/>
+                        </af:column>
+                        <af:column headerText="Process Status" id="c3">
+                            <af:outputText value="#{row.Pstatus}"
+                                           shortDesc="#{bindings.DemoProcessView1.hints.Pstatus.tooltip}" id="ot3"/>
+                        </af:column>
+                    </af:table>
+                </af:panelCollection> 
+                <af:button text="Start Process 1"  id="b1" actionListener="#{ScrehulerBean.startTask}"/>
+                <af:button text="Start Process 2" id="b3" actionListener="#{ScrehulerBean.startTask2}"/>
+                <af:button actionListener="#{bindings.Execute.execute}" text="Refresh"
+                           disabled="#{!bindings.Execute.enabled}" id="b2"/>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

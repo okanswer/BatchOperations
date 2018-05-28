@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="mainPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DemoProcessView1" RangeSize="25" DataControl="AppModuleDataControl" id="DemoProcessView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DemoProcessView1Iterator" id="DemoProcessView1">
+      <nodeDefinition DefName="model.DemoProcessView" Name="DemoProcessView10">
+        <AttrNames>
+          <Item Value="Pid"/>
+          <Item Value="Column1"/>
+          <Item Value="Pstatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="DemoProcessView1Iterator" id="Execute" RequiresUpdateModel="true" Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>
